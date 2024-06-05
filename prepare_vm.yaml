@@ -24,11 +24,11 @@
       state: started
       enabled: yes
 
-  - name: Set PostgreSQL password for the 'postgres' user
-    become_user: postgres
-    postgresql_user:
-      user: postgres
-      password: my_secure_password  # Replace with your desired password
+#  - name: Set PostgreSQL password for the 'postgres' user
+#    become_user: postgres
+#    postgresql_user:
+#      user: postgres
+#      password: my_secure_password  # Replace with your desired password
 
   - name: Restart PostgreSQL to apply changes
     ansible.builtin.service:
