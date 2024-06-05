@@ -1,0 +1,42 @@
+---
+- name: Start VM and configure PostgreSQL
+  hosts: bigmachine
+  become: yes
+  tasks:
+    - name: Ensure the VM is started
+      community.libvirt.libvirt_domain:
+        name: rhel9-pgsql
+        state: running
+
+- name: Install and configure PostgreSQL on the VM
+  hosts: rhel9-pgsql
+  become: yes
+  tasks:
+
+    - name: Install PostgreSQL
+      ansible.builtin.dnf:
+        name: postgresql
+        state: present
+
+    - name: Ensure PostgreSQL service is started and enabled
+      service:
+        name: postgresql
+        state: started
+        enabled: yes
+
+    - name: Set PostgreSQL password for the 'postgres' user
+      become_user: postgres
+      postgresql_user:
+        user: postgres
+        password: my_secure_password  # Replace with your desired password
+
+    - name: Restart PostgreSQL to apply changes
+      ansible.builtin.service:
+        name: postgresql
+        state: restarted
+
+    - name: Open Firewall Port
+      ansible.posix.firewalld:
+        service: postgresql
+        permanent: yes
+        state: enabled
