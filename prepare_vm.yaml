@@ -1,12 +1,12 @@
 ---
-- name: Start VM and configure PostgreSQL
-  hosts: bigmachine
-  become: yes
-  tasks:
-    - name: Ensure the VM is started
-      community.libvirt.libvirt_domain:
-        name: rhel9-pgsql
-        state: running
+#- name: Start VM and configure PostgreSQL
+#  hosts: bigmachine
+#  become: yes
+#  tasks:
+#    - name: Ensure the VM is started
+#      community.libvirt.libvirt_domain:
+#        name: rhel9-pgsql
+#        state: running
 
 - name: Install and configure PostgreSQL on the VM
   hosts: rhel9-pgsql
