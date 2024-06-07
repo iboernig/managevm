@@ -9,7 +9,7 @@
 #        state: running
 
 - name: Install and configure PostgreSQL on the VM
-  hosts: rhel9-pgsql
+  hosts: database_hosts
   become: yes
   tasks:
 
