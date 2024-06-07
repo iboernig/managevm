@@ -18,8 +18,8 @@
       name: postgresql
       state: present
 
-  - name: Setting up postgres DN
-    ansible.builtin.command: "/usr/bin/postgresql-setup --initdb"
+#  - name: Setting up postgres DN
+#    ansible.builtin.command: "/usr/bin/postgresql-setup --initdb"
 
   - name: Ensure PostgreSQL service is started and enabled
     service:
