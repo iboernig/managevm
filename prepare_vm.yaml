@@ -4,7 +4,7 @@
   become: yes
   tasks:
     - name: Ensure the VM is started
-      community.libvirt.libvirt_domain:
+      community.libvirt.virt:
         name: rhel9-pgsql
         state: running
 
