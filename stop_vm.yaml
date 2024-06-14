@@ -1,9 +1,9 @@
 ---
-- name: Start VM and configure PostgreSQL
+- name: Start VM 
   hosts: bigmachine
   become: yes
   tasks:
-    - name: Ensure the VM is started
+    - name: Ensure the VM is stopped
       community.libvirt.virt:
         name: rhel9-pgsql
         state: destroyed
