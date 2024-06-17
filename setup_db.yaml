@@ -15,3 +15,14 @@
         db: todos
         name: jws
         password: jws  # Choose a secure password here
+    
+    - name: configure remote access
+      community.postgresql.postgresql_set:
+        name: listen_addresses
+        value: "*"
+
+    - name: Restart Database
+      become_user: root
+      ansible.builtin.service:
+        name: postgresql
+        state: restarted
