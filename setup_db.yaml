@@ -1,0 +1,17 @@
+---
+- name: Setup postgres Database
+  hosts: rhel9-pgsql
+  become: yes
+  become_user: postgres
+  tasks:
+    - name: Ensure Database is available
+      community.postgresql.postgresql_db:
+        name: todos
+        comment: "The ToDo App Database"
+        state: present
+
+    - name: Set db user 
+      community.postgresql.postgresql_user:
+        db: todos
+        name: jws
+        password: jws  # Choose a secure password here
