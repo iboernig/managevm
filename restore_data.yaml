@@ -26,7 +26,7 @@
       environment:
         GOOGLE_PROJECT_ID: 172836235953
         GOOGLE_APPLICATION_CREDENTIALS: /etc/gcp-secret
-        RESTIC_PASSWORD_FILE: /etc/resic-secret
+        RESTIC_PASSWORD_FILE: /etc/restic-secret
 
     - name: restart database
       ansible.builtin.service:
