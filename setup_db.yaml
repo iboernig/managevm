@@ -1,6 +1,6 @@
 ---
 - name: Setup postgres Database
-  hosts: rhel9-pgsql
+  hosts: database_hosts
   become: yes
   become_user: postgres
   tasks:

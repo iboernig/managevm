@@ -1,6 +1,6 @@
 ---
 - name: Restore Data to Postgres
-  hosts: rhel9-pgsql
+  hosts: database_hosts
   become: yes
 
   tasks:
@@ -20,6 +20,12 @@
       ansible.builtin.dnf:
         name: restic
         state: present
+
+    - name: stop postgres db
+      ansible.builtin.service:
+        name: postgresql 
+        state: stopped
+
     - name:
       ansible.builtin.command:
         cmd: restic -r gs:restic-backups-rw8ns:/demo-todos-ext-postgres-backup restore latest --target /
@@ -28,7 +34,7 @@
         GOOGLE_APPLICATION_CREDENTIALS: /etc/gcp-secret
         RESTIC_PASSWORD_FILE: /etc/restic-secret
 
-    - name: restart database
+    - name: start database
       ansible.builtin.service:
         name: postgresql
-        state: restarted
+        state: started

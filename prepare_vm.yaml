@@ -1,8 +1,4 @@
 ---
-- name: Start VM and configure PostgreSQL
-  hosts: bigmachine
-  become: yes
-
 - name: Install and configure PostgreSQL on the VM
   hosts: database_hosts
   become: yes
