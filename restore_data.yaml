@@ -2,10 +2,6 @@
 - name: Restore Data to Postgres
   hosts: rhel9-pgsql
   become: yes
-  environment: 
-    GOOGLE_PROJECT_ID=172836235953
-    GOOGLE_APPLICATION_CREDENTIALS=/etc/gcp-secret
-    RESTIC_PASSWORD_FILE=/etc/resic-secret
 
   tasks:
     - name: Add codeready builder repo
@@ -27,6 +23,11 @@
     - name:
       ansible.builtin.command:
         cmd: restic -r gs:restic-backups-rw8ns:/demo-todos-ext-postgres-backup restore latest --target /
+      environment:
+        GOOGLE_PROJECT_ID: 172836235953
+        GOOGLE_APPLICATION_CREDENTIALS: /etc/gcp-secret
+        RESTIC_PASSWORD_FILE: /etc/resic-secret
+
     - name: restart database
       ansible.builtin.service:
         name: postgresql
