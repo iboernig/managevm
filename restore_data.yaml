@@ -27,3 +27,7 @@
     - name:
       ansible.builtin.command:
         cmd: restic -r gs:restic-backups-rw8ns:/demo-todos-ext-postgres-backup restore --target /
+    - name: restart database
+      ansible.builtin.service:
+        name: postgresql
+        state: restarted
