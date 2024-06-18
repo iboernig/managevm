@@ -1,5 +1,5 @@
 ---
-- name: Start VM 
+- name: Stop local VM 
   hosts: bigmachine
   become: yes
   tasks:
