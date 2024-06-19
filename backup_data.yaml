@@ -1,0 +1,23 @@
+---
+- name: Backup Data from external Postgres
+  hosts: azure-rhel9-pgsql
+  become: yes
+
+  tasks:
+    - name: stop postgres db
+      ansible.builtin.service:
+        name: postgresql 
+        state: stopped
+
+    - name:
+      ansible.builtin.command:
+        cmd: restic -r gs:restic-backups-rw8ns:/demo-todos-ext-postgres-backup backup /var/lib/pgsql/data/
+      environment:
+        GOOGLE_PROJECT_ID: 172836235953
+        GOOGLE_APPLICATION_CREDENTIALS: /etc/gcp-secret
+        RESTIC_PASSWORD_FILE: /etc/restic-secret
+
+    - name: start database
+      ansible.builtin.service:
+        name: postgresql
+        state: started
