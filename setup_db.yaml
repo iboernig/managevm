@@ -21,15 +21,13 @@
         name: listen_addresses
         value: "*"
 
-    - name: configure pg_hba.conf
-      community.postgresql.postgresql_pg_hba:
-        dest: /var/lib/pgsql/data/pg_hba.conf
-        address: all
-        contype: host
-        users: jws
-        create: true
-        overwrite: true
-
+#    - name: configure pg_hba.conf
+#      community.postgresql.postgresql_pg_hba:
+#        dest: /var/lib/pgsql/data/pg_hba.conf
+#        address: all
+#        contype: host
+#        users: jws
+#        create: true
 
     - name: Restart Database
       become_user: root
