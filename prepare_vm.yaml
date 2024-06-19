@@ -20,11 +20,6 @@
         state: started
         enabled: yes
 
-    - name: Restart PostgreSQL to apply changes
-      ansible.builtin.service:
-        name: postgresql
-        state: restarted
-
     - name: Open Firewall Port
       ansible.posix.firewalld:
         service: postgresql
