@@ -28,6 +28,7 @@
         contype: host
         users: jws
         create: true
+        overwrite: true
 
 
     - name: Restart Database
