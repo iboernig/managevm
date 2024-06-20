@@ -1,6 +1,6 @@
 ---
 - name: Backup Data from external Postgres
-  hosts: azure-rhel9-pgsql
+  hosts: gcp-rhel9-pgsql
   become: yes
 
   tasks:
